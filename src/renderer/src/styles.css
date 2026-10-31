@@ -1,0 +1,316 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter-tight';
+@import 'highlight.js/styles/github-dark.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 5.9% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 5.9% 10%;
+  --secondary: 240 4.8% 95.9%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --error: 0 72.2% 50.6%;
+  --error-foreground: 0 85.7% 97.3%;
+  --warning: 38 92% 50%;
+  --warning-text: 26 90.5% 37.1%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+  --primary: 142.1 76.2% 36.3%;
+  --primary-foreground: 0 0% 98%;
+  --sidebar: 0 0% 98%;
+  --sidebar-foreground: 240 5.2% 33.9%;
+  --sidebar-border: 220 13% 91%;
+
+  /* Live-room "ready" pill (lime) and ended status. */
+  --ready-pill-background: 89.4 89.1% 89.2%;
+  --ready-pill-text: 96.2 79.9% 27.3%;
+  --ready-pill-stroke: 92.8 79.7% 55.5%;
+  --status-ended: 240 4.9% 83.9%;
+
+  /* Entity colour coding: sessions (warm taupe), resumes (blue), documents (teal). */
+  --session: 12 14% 53%;
+  --session-bg: 60 4.8% 95.9%;
+  --session-border: 240 5.9% 90%;
+  --session-pill: 20 5.9% 90%;
+  --resume: 216 55% 54%;
+  --resume-bg: 212.9 100% 93.9%;
+  --resume-border: 214.7 93.4% 88%;
+  --document: 172 30% 39%;
+  --document-bg: 160.9 36.7% 88.2%;
+  --document-border: 161.8 35.5% 81.8%;
+
+  /* Subtle follow-the-cursor sheen on cards. */
+  --spotlight-x: 50%;
+  --spotlight-y: 0%;
+  --card-spotlight: hsl(240 5.9% 10% / 0.028);
+  --card-spotlight-reach: 360px;
+
+  --radius: 0.5rem;
+  color-scheme: light;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 240 5.9% 90%;
+  --card: 240 8% 6%;
+  --card-foreground: 0 0% 98%;
+  --secondary: 240 3.7% 15.9%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 5.9% 10%;
+  --error: 0 72.2% 50.6%;
+  --error-foreground: 0 93.3% 94.1%;
+  --warning: 45 93% 47%;
+  --warning-text: 45 93% 47%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  --primary: 142.8 64.2% 24.1%;
+  --primary-foreground: 240 5.9% 10%;
+  --sidebar: 240 5.9% 10%;
+  --sidebar-foreground: 240 4.8% 95.9%;
+  --sidebar-border: 240 3.7% 15.9%;
+
+  --ready-pill-background: 97.8 63.1% 20.2%;
+  --ready-pill-text: 92.1 85.7% 67.1%;
+  --ready-pill-stroke: 95 86.7% 32.5%;
+  --status-ended: 240 5.2% 33.9%;
+
+  --session: 12 18% 68%;
+  --session-bg: 240 5.9% 10%;
+  --session-border: 240 3.7% 15.9%;
+  --session-pill: 240 3.7% 15.9%;
+  --resume: 217 55% 72%;
+  --resume-bg: 223.3 27.7% 25.5%;
+  --resume-border: 221.9 39% 36.7%;
+  --document: 172 30% 60%;
+  --document-bg: 175.4 26.5% 19.2%;
+  --document-border: 172.1 27.9% 26.7%;
+
+  --card-spotlight: hsl(0 0% 100% / 0.025);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', Menlo, monospace;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-danger: hsl(var(--error));
+  --color-danger-foreground: hsl(var(--error-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-text: hsl(var(--warning-text));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-ready-pill: hsl(var(--ready-pill-background));
+  --color-ready-pill-text: hsl(var(--ready-pill-text));
+  --color-status-ended: hsl(var(--status-ended));
+  --color-session: hsl(var(--session));
+  --color-session-bg: hsl(var(--session-bg));
+  --color-resume: hsl(var(--resume));
+  --color-resume-bg: hsl(var(--resume-bg));
+  --color-document: hsl(var(--document));
+  --color-document-bg: hsl(var(--document-bg));
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+  }
+}
+
+/* Scrollbars that stay out of the way. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.25);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.45);
+}
+
+/* Markdown rendered from model output. */
+.md {
+  line-height: 1.65;
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+}
+.md > * + * {
+  margin-top: 0.75em;
+}
+.md h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.md h2 {
+  font-size: 1.125rem;
+  font-weight: 650;
+  margin-top: 1.4em;
+}
+.md h3 {
+  font-size: 1rem;
+  font-weight: 650;
+  margin-top: 1.2em;
+}
+.md ul,
+.md ol {
+  padding-left: 1.25rem;
+}
+.md ul {
+  list-style: disc;
+}
+.md ol {
+  list-style: decimal;
+}
+.md li + li {
+  margin-top: 0.3em;
+}
+.md strong {
+  font-weight: 650;
+}
+.md a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.md hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: 1.5em 0;
+}
+.md blockquote {
+  border-left: 3px solid var(--color-border);
+  padding-left: 0.9rem;
+  color: var(--color-muted-foreground);
+}
+.md :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-muted);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+}
+.md pre {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  background: #0d1117;
+  color: #e6edf3;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+}
+.md table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.875rem;
+}
+.md th,
+.md td {
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+
+/* Blinking caret shown while a response streams in. */
+.streaming-caret::after {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--color-primary);
+  animation: caret 1s steps(2) infinite;
+}
+@keyframes caret {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Follow-the-cursor sheen: set --spotlight-x/y from JS on mousemove. */
+.card-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.card-spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    var(--card-spotlight-reach) circle at var(--spotlight-x) var(--spotlight-y),
+    var(--card-spotlight),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.card-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Live-room "ready" pill. */
+.pill-ready {
+  background: hsl(var(--ready-pill-background));
+  color: hsl(var(--ready-pill-text));
+  border: 1px solid hsl(var(--ready-pill-stroke) / 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
