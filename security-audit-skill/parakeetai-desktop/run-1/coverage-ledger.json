@@ -1,0 +1,135 @@
+[
+  {
+    "coverage_id": "%E2%A0%80.exe%23SetWindowDisplayAffinity::windows-capture-stack%23display-affinity-runtime-semantics::profile%2Fquick%2Fall-in-scope-subsystems::DESKTOP-MOBILE-AND-LOCAL-IPC.md%23Validation%20rules",
+    "canonical_refs": {
+      "surface": "⠀.exe#SetWindowDisplayAffinity",
+      "boundary": "windows-capture-stack#display-affinity-runtime-semantics",
+      "subsystem": "profile/quick/all-in-scope-subsystems",
+      "attack_class": "DESKTOP-MOBILE-AND-LOCAL-IPC.md#Validation rules"
+    },
+    "surface": "Native display-affinity runtime behavior",
+    "boundary": "Windows and third-party capture enforcement",
+    "subsystem": "profile/quick/all-in-scope-subsystems",
+    "attack_class": "Desktop validation rules",
+    "starting_paths": ["⠀.exe"],
+    "ordinary_attack_class_block": null,
+    "selected_companion_blocks": [],
+    "excluded_blocks": [],
+    "prior_status": "none",
+    "attempts": [],
+    "wave": 1,
+    "status": "out_of_scope",
+    "agent_id": null,
+    "reviewed_paths": [],
+    "local_checks": [],
+    "result_fingerprints": [],
+    "unresolved": ["Runtime native call arguments and third-party capture behavior were not executed; only static PE imports were in scope."]
+  },
+  {
+    "coverage_id": "resources%2Fapp.asar%23live-session-overlay-and-ai-controls::resources%2Fapp.asar%23renderer-to-main-ipc-and-window-privacy::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Feature%20abuse%20and%20data%20leakage",
+    "canonical_refs": {
+      "surface": "resources/app.asar#live-session-overlay-and-ai-controls",
+      "boundary": "resources/app.asar#renderer-to-main-ipc-and-window-privacy",
+      "subsystem": "profile/quick/all-in-scope-subsystems",
+      "attack_class": "ATTACK-CLASSES.md#Feature abuse and data leakage"
+    },
+    "surface": "Live overlay, privacy, answer, hotkey, and screenshot controls",
+    "boundary": "Renderer-to-main IPC and Windows window privacy",
+    "subsystem": "profile/quick/all-in-scope-subsystems",
+    "attack_class": "Feature abuse and data leakage",
+    "starting_paths": [
+      "resources/app.asar",
+      "resources/app.asar.unpacked",
+      "⠀.exe"
+    ],
+    "ordinary_attack_class_block": "ATTACK-CLASSES.md#Feature abuse and data leakage",
+    "selected_companion_blocks": [
+      "DESKTOP-MOBILE-AND-LOCAL-IPC.md#Core discipline",
+      "DESKTOP-MOBILE-AND-LOCAL-IPC.md#Over-broad native bridge capabilities",
+      "DESKTOP-MOBILE-AND-LOCAL-IPC.md#Universal moves",
+      "DESKTOP-MOBILE-AND-LOCAL-IPC.md#Validation rules",
+      "AI-AND-LLM.md#Core discipline",
+      "AI-AND-LLM.md#Sensitive context extraction",
+      "AI-AND-LLM.md#Universal moves",
+      "AI-AND-LLM.md#Validation rules",
+      "SUPPLY-CHAIN-AND-RELEASE.md#Core discipline",
+      "SUPPLY-CHAIN-AND-RELEASE.md#Universal moves",
+      "SUPPLY-CHAIN-AND-RELEASE.md#Validation rules"
+    ],
+    "excluded_blocks": [
+      {
+        "block": "WEB-PROTOCOL-AND-AUTH.md#Core discipline",
+        "reason": "Server-side API authentication and authorization implementation were not present in the installed client scope."
+      },
+      {
+        "block": "MEMORY-SAFETY-AND-BINARY.md#Core discipline",
+        "reason": "No native disassembly or memory-safety review provider was available; the native review was limited to PE metadata and imports."
+      }
+    ],
+    "prior_status": "none",
+    "attempts": [],
+    "wave": 1,
+    "status": "covered",
+    "agent_id": "rea-static-review",
+    "reviewed_paths": [
+      "resources/app.asar/dist/main/main.js",
+      "resources/app.asar/dist/main/preload.js",
+      "resources/app.asar/dist/renderer/renderer.js",
+      "resources/app.asar.unpacked/node_modules/@parakeetai-desktop/native-modules/prebuilt/index.js",
+      "⠀.exe"
+    ],
+    "local_checks": [
+      {
+        "agent_id": "rea-static-review",
+        "reviewed_paths": [
+          "resources/app.asar/dist/main/main.js",
+          "resources/app.asar/dist/main/preload.js",
+          "resources/app.asar/dist/renderer/renderer.js"
+        ],
+        "invariant": "Requested privacy, overlay, answer, history, hotkey, and screenshot paths must be traced from entry point to sink without inferring runtime enforcement.",
+        "method": "source",
+        "result": "All requested client paths were located; static observations, product claims, and unresolved runtime behavior were separated.",
+        "artifact": null
+      },
+      {
+        "agent_id": "rea-static-review",
+        "reviewed_paths": [
+          "resources/app.asar.unpacked/node_modules/@parakeetai-desktop/native-modules/prebuilt/index.js",
+          "⠀.exe"
+        ],
+        "invariant": "Native anti-capture and executable-disguise claims must be limited to digest-matched artifact evidence.",
+        "method": "source",
+        "result": "Display-affinity imports and U+2800 metadata were confirmed; the exact affinity flag was not inferred and the blank-icon claim was refuted.",
+        "artifact": null
+      }
+    ],
+    "result_fingerprints": [],
+    "unresolved": []
+  },
+  {
+    "coverage_id": "resources%2Fapp.asar%2Fdist%2Frenderer%2Frenderer.js%23DefaultChatTransport::external-ai-service%23server-side-processing::profile%2Fquick%2Fall-in-scope-subsystems::AI-AND-LLM.md%23Sensitive%20context%20extraction",
+    "canonical_refs": {
+      "surface": "resources/app.asar/dist/renderer/renderer.js#DefaultChatTransport",
+      "boundary": "external-ai-service#server-side-processing",
+      "subsystem": "profile/quick/all-in-scope-subsystems",
+      "attack_class": "AI-AND-LLM.md#Sensitive context extraction"
+    },
+    "surface": "Server-side AI prompt, solver, and answer-history processing",
+    "boundary": "External AI service implementation and retention",
+    "subsystem": "profile/quick/all-in-scope-subsystems",
+    "attack_class": "Sensitive context extraction",
+    "starting_paths": ["resources/app.asar/dist/renderer/renderer.js"],
+    "ordinary_attack_class_block": null,
+    "selected_companion_blocks": [],
+    "excluded_blocks": [],
+    "prior_status": "none",
+    "attempts": [],
+    "wave": 1,
+    "status": "out_of_scope",
+    "agent_id": null,
+    "reviewed_paths": [],
+    "local_checks": [],
+    "result_fingerprints": [],
+    "unresolved": ["Only the shipped client was supplied; server-side AI prompts, models, authorization, retention, and deletion controls were unavailable."]
+  }
+]

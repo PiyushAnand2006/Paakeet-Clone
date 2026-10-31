@@ -1,0 +1,7 @@
+{
+  "name": "parakeetai-desktop",
+  "version": "3.9.141",
+  "description": "ParakeetAI Desktop App",
+  "author": "ParakeetAI",
+  "main": "./dist/main/main.js"
+}

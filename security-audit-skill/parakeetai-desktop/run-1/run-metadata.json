@@ -1,0 +1,49 @@
+{
+  "run_id": "parakeetai-desktop-run-1",
+  "repo": "parakeetai-desktop-installed-artifact",
+  "target": "C:\\Users\\thaku\\AppData\\Local\\Programs\\parakeetai-desktop",
+  "source_ref": {
+    "kind": "shipped-artifact-sha256",
+    "app_asar": "63E2C3FB1A23751C3382E6CCEB17B06A4821B484D704A09FD8E7C00CA053DB7F",
+    "executable": "61B8597C165A1D98F54861DF83CB10AB861B6FF44BE090DDE6E04FD6634691C9",
+    "worktree": "not-applicable-installed-artifact"
+  },
+  "profile": "quick",
+  "scope_paths": [
+    "resources/app.asar",
+    "resources/app.asar.unpacked",
+    "⠀.exe"
+  ],
+  "budget": null,
+  "execution_policy": "sandboxed-source-and-local-only",
+  "actual_execution": "static-only-no-target-code-executed",
+  "selected_companion_files": [
+    "DESKTOP-MOBILE-AND-LOCAL-IPC.md",
+    "AI-AND-LLM.md",
+    "SUPPLY-CHAIN-AND-RELEASE.md"
+  ],
+  "prior_run_paths": [],
+  "shared_file_owners": {
+    "run-metadata.json": "parent",
+    "architecture.md": "parent",
+    "coverage-ledger.json": "parent",
+    "findings.json": "parent",
+    "REPORT.md": "parent",
+    "FINDINGS-DETAIL.md": "parent",
+    "NEEDS-VALIDATION.md": "parent"
+  },
+  "run_status": "incomplete",
+  "incomplete_reason": "fresh_agent_coverage_critic_unavailable; scoped static architecture report was completed and validated",
+  "validation": {
+    "findings": "PASS (0 findings) using the skill's exported validateDocument",
+    "coverage_ledger": "PASS (3 units) using the skill's exported validateDocument",
+    "deviation": "The validator CLI entry points reject every input on Windows because Node exposes no O_NOFOLLOW/O_NONBLOCK constants. The same skill validation functions were invoked directly on files read by the parent; only the file-read guard was bypassed."
+  },
+  "limitations": [
+    "No independent coverage-critic or fresh-verifier agent was available; the parent performed a second direct source-and-evidence pass and checklist reconciliation.",
+    "The schema and coverage validators could not run through their CLI entry points on Windows (O_NOFOLLOW/O_NONBLOCK unavailable); the equivalent exported validation functions were run directly.",
+    "REA MCP registration is unavailable; the REA 6.8.0 CLI is used directly.",
+    "REA doctor reports an unsupported Node.js 25.2.1 runtime and no configured native analysis provider.",
+    "No target-controlled application code will be executed."
+  ]
+}
